@@ -1,12 +1,17 @@
 package com.project.thrillio.manage;
 
+import com.project.thrillio.dao.BookmarkDao;
+import com.project.thrillio.entities.Book;
+import com.project.thrillio.entities.Bookmark;
 import com.project.thrillio.entities.Movie;
+import com.project.thrillio.entities.WebLink;
 
 public class BookmarkManager {
     
     private BookmarkManager(){}
 
     private static BookmarkManager instance = new BookmarkManager();
+    private static BookmarkDao bookmarkDao = new BookmarkDao();
 
     public static BookmarkManager getInstance() {
         return instance;
@@ -27,5 +32,37 @@ public class BookmarkManager {
         
         return(movie);
     }
+
+    public Book createBook(long id, String title, int publicationYear, String publisher, String[] authors, String genre, double amazonRating){
+
+        Book book = new Book();
+
+        book.setId(id);
+        book.setTitle(title);
+        book.setPublicationYear(publicationYear);
+        book.setPublisher(publisher);
+        book.setAuthors(authors);
+        book.setGenre(genre);
+        book.setAmazonRating(amazonRating);
+
+        return(book);
+
+    }
+
+    public WebLink createWebLink(long id, String title, String url, String hostl){
+
+        WebLink webLink = new WebLink();
+
+        webLink.setId(id);
+        webLink.setTitle(title);
+        webLink.setUrl(url);
+        webLink.setHostl(hostl);
+
+        return(webLink);
+    }
     
+    public Bookmark[][] getBookmarks(){
+        return bookmarkDao.getBookmarks();
+    }
+
 }

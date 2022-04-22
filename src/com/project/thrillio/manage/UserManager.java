@@ -1,5 +1,6 @@
 package com.project.thrillio.manage;
 
+import com.project.thrillio.dao.UserDao;
 import com.project.thrillio.entities.User;
 
 public class UserManager {
@@ -7,6 +8,7 @@ public class UserManager {
     private UserManager() {}
 
     private static UserManager instance = new UserManager();
+    private static UserDao userDao = new UserDao();
 
     public static UserManager getInstance() {
         return instance;
@@ -26,8 +28,9 @@ public class UserManager {
 
         return user;
     }
-
     
+    public User[] getUsers(){
+        return userDao.getUsers();
+    }
 
-    
 }

@@ -12,14 +12,15 @@ import com.project.thrillio.manage.UserManager;
 
 public class DataStore {
     
-    private static final int USER_BOOKMARK_LIMIT = 5;
-    private static final int BOOKMARK_COUNT_PER_TYPE = 5;
-    private static final int BOOKMARK_TYPES_COUNT = 3;
-    private static final int TOTAL_USER_COUNT = 5;
+    public static final int USER_BOOKMARK_LIMIT = 5;
+    public static final int BOOKMARK_COUNT_PER_TYPE = 5;
+    public static final int BOOKMARK_TYPES_COUNT = 3;
+    public static final int TOTAL_USER_COUNT = 5;
 
     private static User[] users = new User[TOTAL_USER_COUNT];
     private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
     private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
+    private static int bookmarkIndex; 
 
     public static User[] getUsers(){
         return users;
@@ -68,6 +69,11 @@ public class DataStore {
         bookmarks[2][2] = BookmarkManager.getInstance().createBook(4002, "JavaScript", 2018, "Potter", new String[]{"Potter"}, BookGenre.ART, 2.5);
         bookmarks[2][3] = BookmarkManager.getInstance().createBook(4003, "Java", 2019, "React", new String[]{"Potter"}, BookGenre.ART, 3.4);
         bookmarks[2][4] = BookmarkManager.getInstance().createBook(4004, "Project", 2020, "Udemy", new String[]{"Potter"}, BookGenre.ART, 8.1);
+    }
+
+    public static void add(UserBookmark userBookmark) {
+        userBookmarks[bookmarkIndex] = userBookmark;
+        bookmarkIndex++;
     }
 
 }

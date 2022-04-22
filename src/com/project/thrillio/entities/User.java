@@ -12,6 +12,9 @@ public class User {
     public long getId() {
         return id;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getUserType() {
         return userType;
     }
@@ -48,9 +51,10 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
-
     
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", gender=" + gender + ", userType=" + userType + "]";
+	}
 }

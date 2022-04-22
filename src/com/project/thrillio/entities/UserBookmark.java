@@ -18,4 +18,8 @@ public class UserBookmark {
         this.user = user;
     }
     
+	@Override
+	public String toString() {
+		return "UserBookmark [user=" + user + ", bookmark=" + bookmark + "]";
+	}   
 }

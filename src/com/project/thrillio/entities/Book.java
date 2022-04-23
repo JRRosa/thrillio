@@ -1,5 +1,7 @@
 package com.project.thrillio.entities;
 
+import java.util.Arrays;
+
 public class Book extends Bookmark {
 
     private int publicationYear;
@@ -38,6 +40,10 @@ public class Book extends Bookmark {
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
-
-
+    
+	@Override
+	public String toString() {
+		return "Book [publicationYear=" + publicationYear + ", publisher=" + publisher + ", authors="
+				+ Arrays.toString(authors) + ", genre=" + genre + ", amazonRating=" + amazonRating + "]";
+	}
 }

@@ -8,6 +8,9 @@ public class Bookmark {
     public long getId() {
         return id;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getProfileUrl() {
         return profileUrl;
     }
@@ -20,7 +23,9 @@ public class Bookmark {
     public void setTitle(String title) {
         this.title = title;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
+    
+	@Override
+	public String toString() {
+		return "Bookmark [id=" + id + ", title=" + title + ", profileUrl=" + profileUrl + "]";
+	}   
 }

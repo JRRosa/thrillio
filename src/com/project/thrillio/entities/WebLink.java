@@ -17,4 +17,9 @@ public class WebLink extends Bookmark {
     public void setUrl(String url) {
         this.url = url;
     }
+    
+	@Override
+	public String toString() {
+		return "WebLink [url=" + url + ", hostl=" + hostl + "]";
+	}
 }

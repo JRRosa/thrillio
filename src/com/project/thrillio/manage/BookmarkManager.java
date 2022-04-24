@@ -7,6 +7,7 @@ import com.project.thrillio.entities.Movie;
 import com.project.thrillio.entities.User;
 import com.project.thrillio.entities.UserBookmark;
 import com.project.thrillio.entities.WebLink;
+import com.project.thrillio.partner.Shareable;
 
 public class BookmarkManager {
     
@@ -58,7 +59,7 @@ public class BookmarkManager {
         webLink.setId(id);
         webLink.setTitle(title);
         webLink.setUrl(url);
-        webLink.setHostl(hostl);
+        webLink.setHost(hostl);
 
         return(webLink);
     }
@@ -74,6 +75,25 @@ public class BookmarkManager {
 
         bookmarkDao.saveUserBookmark(userBookmark);
 
+    }
+
+    public void setKidFriendStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+        bookmark.setKidFriendStatus(kidFriendlyStatus);
+        bookmark.setKidFriendlyMarkedBy(user);
+        System.out.println("Kid-friendly status: " + kidFriendlyStatus + ", Marked by: " + user.getEmail() + ", " + bookmark);
+    }
+
+    public void share(User user, Bookmark bookmark) {
+        bookmark.setSharedBy(user);
+        String itemData = null;
+        
+        System.out.println("Data to be shared: ");
+        if (bookmark instanceof Book) {
+        	itemData = ((Book) bookmark).getItemData();
+        } else if(bookmark instanceof WebLink) {
+        	itemData = ((WebLink) bookmark).getItemData();
+        }
+        System.out.println(itemData);
     }
 
 }

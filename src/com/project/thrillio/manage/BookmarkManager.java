@@ -1,5 +1,9 @@
 package com.project.thrillio.manage;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.nio.charset.MalformedInputException;
+
 import com.project.thrillio.dao.BookmarkDao;
 import com.project.thrillio.entities.Book;
 import com.project.thrillio.entities.Bookmark;
@@ -8,6 +12,8 @@ import com.project.thrillio.entities.User;
 import com.project.thrillio.entities.UserBookmark;
 import com.project.thrillio.entities.WebLink;
 import com.project.thrillio.partner.Shareable;
+import com.project.thrillio.util.HttpConnect;
+import com.project.thrillio.util.IOUtil;
 
 public class BookmarkManager {
     
@@ -74,6 +80,25 @@ public class BookmarkManager {
         userBookmark.setBookmark(bookmark);
 
         bookmarkDao.saveUserBookmark(userBookmark);
+        
+        if (bookmark instanceof WebLink) {
+			try {
+				String url = ((WebLink) bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(url);
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}
+			} catch (MalformedURLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+        
 
     }
 

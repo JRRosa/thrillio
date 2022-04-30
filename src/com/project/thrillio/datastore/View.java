@@ -15,6 +15,7 @@ public class View {
 
         for (Bookmark[] bookmarksList : bookmarks) {
             for (Bookmark bookmark : bookmarksList) {
+            	// Bookmarking!!
                 if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT && getBookmarkDecision(bookmark)) {
                     bookmarkCount++;
 
